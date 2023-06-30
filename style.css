@@ -1,9 +1,26 @@
-.container {
+body {
   display: flex;
-  margin: 0;
+  align-items: center;
+  justify-content: center;
+  height: 900px;
 }
-div {
-  border: 1px black solid;
-  /* flex-grow: 1; */
-  height: 200px;
+.container {
+  height: 600px;
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  border: 5px rgb(57, 49, 38) solid;
+}
+.row {
+  height: 100px;
+  flex-grow: 1;
+  display: flex;
+}
+.subDiv {
+  display: flex;
+  flex-grow: 1;
+}
+.subDiv:hover {
+  background-color: black;
 }

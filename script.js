@@ -1,4 +1,3 @@
-// const div = document.createElement("div");
 const container = document.querySelector(".container");
 
 function createGrid(gridSquare) {
@@ -6,11 +5,21 @@ function createGrid(gridSquare) {
     container.appendChild(div);
   }
 }
+
 function createDiv(divNumber) {
   for (let i = 0; i < divNumber; i++) {
     let div = document.createElement("div");
     container.appendChild(div);
-    div.style.border = "1px black solid";
+    div = div.setAttribute("class", "row");
   }
 }
-createDiv(3);
+
+createDiv(10);
+const rows = document.querySelectorAll(".row");
+rows.forEach((row) => {
+  for (let i = 0; i < rows.length; i++) {
+    let subDiv = document.createElement("div");
+    row.appendChild(subDiv);
+    subDiv - subDiv.setAttribute("class", "subDiv");
+  }
+});
