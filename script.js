@@ -5,6 +5,7 @@ const high = document.querySelector("#high");
 const cleanBtn = document.querySelector("#cleanBtn");
 const blackInk = document.querySelector("#blackInk");
 const fancyInk = document.querySelector("#fancyInk");
+const easerBtn = document.querySelector("#easer");
 
 function createGrid(gridSquare) {
   for (let i = 0; i < gridSquare; i++) {
@@ -45,6 +46,7 @@ function clean() {
   const subDivs = document.querySelectorAll(".subDiv");
   subDivs.forEach((subDiv) => (subDiv.style.backgroundColor = "white"));
 }
+
 function createRow(divNumber) {
   for (let i = 0; i < divNumber; i++) {
     let div = document.createElement("div");
@@ -57,6 +59,17 @@ function resetDivNumber() {
   createSubDiv();
   rows.forEach((row) => row.remove());
 }
+
+function easer() {
+  const subDivs = document.querySelectorAll(".subDiv");
+  subDivs.forEach((subDiv) =>
+    subDiv.addEventListener(
+      "mouseenter",
+      () => (subDiv.style.backgroundColor = "white")
+    )
+  );
+}
+
 let divNumber = 0;
 low.addEventListener("click", () => {
   resetDivNumber();
@@ -75,3 +88,4 @@ high.addEventListener("click", () => {
 });
 
 cleanBtn.addEventListener("click", clean);
+easerBtn.addEventListener("click", easer);
