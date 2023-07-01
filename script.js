@@ -3,6 +3,8 @@ const low = document.querySelector("#low");
 const normal = document.querySelector("#normal");
 const high = document.querySelector("#high");
 const cleanBtn = document.querySelector("#cleanBtn");
+const blackInk = document.querySelector("#blackInk");
+const fancyInk = document.querySelector("#fancyInk");
 
 function createGrid(gridSquare) {
   for (let i = 0; i < gridSquare; i++) {
@@ -17,11 +19,28 @@ function createSubDiv() {
       row.appendChild(subDiv);
       subDiv.setAttribute("class", "subDiv");
       subDiv.addEventListener("mouseenter", () => {
-        subDiv.style.backgroundColor = "black";
+        subDiv.style.backgroundColor = `black`;
+      });
+      blackInk.addEventListener("click", () => {
+        subDiv.addEventListener("mouseenter", () => {
+          subDiv.style.backgroundColor = `black`;
+        });
+      });
+      fancyInk.addEventListener("click", () => {
+        subDiv.addEventListener("mouseenter", () => {
+          subDiv.style.backgroundColor = `rgb(${randomNumber(
+            255
+          )},${randomNumber(255)},${randomNumber(255)})`;
+        });
       });
     }
   });
 }
+
+function randomNumber(i) {
+  return Math.floor(Math.random() * i);
+}
+
 function clean() {
   const subDivs = document.querySelectorAll(".subDiv");
   subDivs.forEach((subDiv) => (subDiv.style.backgroundColor = "white"));
