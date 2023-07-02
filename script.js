@@ -10,17 +10,13 @@ gridLabel.textContent = `grid: ${document.querySelector("#gridValue").value} `;
 
 gridValue.addEventListener("mousemove", updateValue);
 
+//function to display the dynamically on the UI
 function updateValue() {
   const gridNumber = document.querySelector("#gridValue").value;
   gridLabel.textContent = `grid: ${gridNumber} `;
 }
 
-function createGrid(gridSquare) {
-  for (let i = 0; i < gridSquare; i++) {
-    container.appendChild(div);
-  }
-}
-
+//create div in the row
 function createSubDiv() {
   window.rows = document.querySelectorAll(".row");
   rows.forEach((row) => {
@@ -51,11 +47,13 @@ function randomNumber(i) {
   return Math.floor(Math.random() * i);
 }
 
+//change the background color of all the div to white
 function clean() {
   const subDivs = document.querySelectorAll(".subDiv");
   subDivs.forEach((subDiv) => (subDiv.style.backgroundColor = "white"));
 }
 
+//Create the row div which subDiv will reside in
 function createRow(divNumber) {
   for (let i = 0; i < divNumber; i++) {
     let div = document.createElement("div");
@@ -64,11 +62,13 @@ function createRow(divNumber) {
   }
 }
 
+//remove all the div
 function resetDivNumber() {
   createSubDiv();
   rows.forEach((row) => row.remove());
 }
 
+//change the div's background color to white whenever the mouse hover
 function easer() {
   const subDivs = document.querySelectorAll(".subDiv");
   subDivs.forEach((subDiv) =>
@@ -86,7 +86,7 @@ function createGrid() {
   createSubDiv();
 }
 
-document / addEventListener("DOMContentLoaded", createGrid);
+document.addEventListener("DOMContentLoaded", createGrid);
 create.addEventListener("click", createGrid);
 
 cleanBtn.addEventListener("click", clean);
