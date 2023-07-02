@@ -13,11 +13,23 @@ body {
   border: 5px rgb(57, 49, 38) solid;
 }
 .row {
-  height: 100px;
   flex-grow: 1;
   display: flex;
 }
 .subDiv {
   display: flex;
   flex-grow: 1;
+  border: 0.3px rgb(55, 53, 52) solid;
+}
+#gridLabel {
+  margin: 0 16px;
+}
+
+#gridValue {
+  margin: 0 16px;
+}
+
+.gridlevel {
+  display: flex;
+  flex-direction: column;
 }
