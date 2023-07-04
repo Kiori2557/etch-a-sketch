@@ -10,7 +10,7 @@ body {
   display: flex;
   flex-direction: column;
   margin: 0;
-  border: 5px rgb(57, 49, 38) solid;
+  border: 5px rgb(93, 99, 96) solid;
 }
 .row {
   flex-grow: 1;
@@ -19,17 +19,33 @@ body {
 .subDiv {
   display: flex;
   flex-grow: 1;
-  border: 0.3px rgb(55, 53, 52) solid;
-}
-#gridLabel {
-  margin: 0 16px;
+  /* border: 0.2px rgb(93, 99, 96) solid; */
 }
 
 #gridValue {
   margin: 0 16px;
 }
 
-.gridlevel {
+.gridContent {
   display: flex;
   flex-direction: column;
+}
+#gridValue {
+  -webkit-appearance: none;
+  background: rgb(93, 99, 96);
+  height: 3px;
+  margin: 2em 0;
+}
+
+/* Chrome */
+#gridValue::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background: rgb(93, 99, 96);
+  cursor: pointer;
+}
+#gridLabel {
+  text-align: center;
+  font-size: 1.5rem;
 }

@@ -8,15 +8,18 @@
     <script src="script.js" defer></script>
   </head>
   <body>
-    <button id="cleanBtn">clean</button>
-    <button id="blackInk">black ink</button>
-    <button id="fancyInk">Fancy Ink</button>
-    <button id="easer">Easer</button>
-    <div class="gridlevel">
-      <p id="gridLabel"></p>
-      <input type="range" name="" id="gridValue" min="1" max="64" />
-      <button id="create">Create</button>
+    <div class="options">
+      <button id="cleanBtn">clean</button>
+      <button id="fancyInk">Fancy Ink</button>
+      <button id="easer">Easer</button>
+      <button id="gridLine">Show Grid Lines</button>
+      <input type="color" id="inputColor" />
     </div>
-    <div class="container"></div>
+
+    <div class="gridContent">
+      <p id="gridLabel"></p>
+      <input type="range" value="10" id="gridValue" min="1" max="64" />
+      <div class="container"></div>
+    </div>
   </body>
 </html>

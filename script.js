@@ -1,44 +1,55 @@
 const container = document.querySelector(".container");
-const create = document.querySelector("#create");
 const cleanBtn = document.querySelector("#cleanBtn");
-const blackInk = document.querySelector("#blackInk");
 const fancyInk = document.querySelector("#fancyInk");
 const easerBtn = document.querySelector("#easer");
 const gridValue = document.querySelector("#gridValue");
+const gridLine = document.querySelector("#gridLine");
 const gridLabel = document.querySelector("#gridLabel");
-gridLabel.textContent = `grid: ${document.querySelector("#gridValue").value} `;
+const inputColor = document.querySelector("#inputColor");
+gridLabel.textContent = `Grid: ${document.querySelector("#gridValue").value}x${
+  document.querySelector("#gridValue").value
+} `;
+const DEFAULT_COLOR = "black";
+let currentColor = DEFAULT_COLOR;
 
-gridValue.addEventListener("mousemove", updateValue);
-
-//function to display the dynamically on the UI
-function updateValue() {
-  const gridNumber = document.querySelector("#gridValue").value;
-  gridLabel.textContent = `grid: ${gridNumber} `;
+function setCurrentColor() {
+  fancyInk.addEventListener("click", () => {
+    currentColor = "fancy";
+  });
+  inputColor.addEventListener("input", () => {
+    currentColor = inputColor.value;
+  });
+  easerBtn.addEventListener("click", () => {
+    currentColor = "white";
+  });
 }
 
-//create div in the row
+setCurrentColor();
+function colorChange(e) {
+  if (currentColor === "fancy") {
+    e.target.style.backgroundColor = `rgb(${randomNumber(256)},${randomNumber(
+      256
+    )},${randomNumber(256)})`;
+  }
+  e.target.style.backgroundColor = currentColor;
+}
+
+//function to display the value of the input range dynamically on the UI
+function updateValue() {
+  const gridNumber = document.querySelector("#gridValue").value;
+  gridLabel.textContent = `Grid: ${gridNumber}x${gridNumber} `;
+}
+gridValue.addEventListener("mousemove", updateValue);
+
+//create div in the row div
 function createSubDiv() {
-  window.rows = document.querySelectorAll(".row");
+  const rows = document.querySelectorAll(".row");
   rows.forEach((row) => {
     for (let i = 0; i < rows.length; i++) {
       const subDiv = document.createElement("div");
       row.appendChild(subDiv);
       subDiv.setAttribute("class", "subDiv");
-      subDiv.addEventListener("mouseover", () => {
-        subDiv.style.backgroundColor = `black`;
-      });
-      blackInk.addEventListener("click", () => {
-        subDiv.addEventListener("mouseover", () => {
-          subDiv.style.backgroundColor = `black`;
-        });
-      });
-      fancyInk.addEventListener("click", () => {
-        subDiv.addEventListener("mouseover", () => {
-          subDiv.style.backgroundColor = `rgb(${randomNumber(
-            255
-          )},${randomNumber(255)},${randomNumber(255)})`;
-        });
-      });
+      subDiv.addEventListener("mouseover", colorChange);
     }
   });
 }
@@ -46,12 +57,7 @@ function createSubDiv() {
 function randomNumber(i) {
   return Math.floor(Math.random() * i);
 }
-
-//change the background color of all the div to white
-function clean() {
-  const subDivs = document.querySelectorAll(".subDiv");
-  subDivs.forEach((subDiv) => (subDiv.style.backgroundColor = "white"));
-}
+document.addEventListener("DOMContentLoaded", createGrid);
 
 //Create the row div which subDiv will reside in
 function createRow(divNumber) {
@@ -65,18 +71,7 @@ function createRow(divNumber) {
 //remove all the div
 function resetDivNumber() {
   createSubDiv();
-  rows.forEach((row) => row.remove());
-}
-
-//change the div's background color to white whenever the mouse hover
-function easer() {
-  const subDivs = document.querySelectorAll(".subDiv");
-  subDivs.forEach((subDiv) =>
-    subDiv.addEventListener(
-      "mouseover",
-      () => (subDiv.style.backgroundColor = "white")
-    )
-  );
+  container.innerHTML = "";
 }
 
 function createGrid() {
@@ -85,9 +80,13 @@ function createGrid() {
   createRow(gridNumber);
   createSubDiv();
 }
+gridValue.addEventListener("input", createGrid);
 
-document.addEventListener("DOMContentLoaded", createGrid);
-create.addEventListener("click", createGrid);
+cleanBtn.addEventListener("click", createGrid);
 
-cleanBtn.addEventListener("click", clean);
-easerBtn.addEventListener("click", easer);
+gridLine.addEventListener("click", () => {
+  const subDivs = document.querySelectorAll(".subDiv");
+  subDivs.forEach(
+    (subDiv) => (subDiv.style.border = "0.2px rgb(93, 99, 96) solid")
+  );
+});
